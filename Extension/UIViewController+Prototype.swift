@@ -85,9 +85,7 @@ public extension UIViewController {
         imagePickerController.delegate = imagePickerDelegate!
         imagePickerController.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
         imagePickerController.allowsEditing = true
-        self.present(imagePickerController, animated: true, completion: { imageP in
-            
-        })
+        self.present(imagePickerController, animated: true, completion: nil)
     }
     
     @IBInspectable var backHidden : Bool {
