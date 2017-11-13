@@ -11,7 +11,9 @@ import UIKit
 private var backButtonHidden : Bool = false
 private var tapKBDismiss : Bool = false
 
-private let ImageViewTag = 100
+private let PhotoImageViewTag = 100
+private let ToggleImageViewTag = 101
+
 
 class ImagePickerDelegate : NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     weak var imageView: UIImageView?
@@ -75,11 +77,19 @@ public extension UIViewController {
         }
     }
     
+    @IBAction func toggleButtonSelected(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+    }
     
+    @IBAction func toggleImageHighlighted(_ sender: UIButton) {
+        if let iv = self.view.viewWithTag(ToggleImageViewTag) as? UIImageView {
+            iv.isHighlighted = !iv.isHighlighted
+        }
+    }
     
     @IBAction func openPhotoLibrary(_ sender: Any) {
         imagePickerDelegate = ImagePickerDelegate()
-        imagePickerDelegate?.imageView = self.view.viewWithTag(ImageViewTag) as? UIImageView
+        imagePickerDelegate?.imageView = self.view.viewWithTag(PhotoImageViewTag) as? UIImageView
         
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = imagePickerDelegate!
